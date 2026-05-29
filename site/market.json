@@ -1,0 +1,24 @@
+[
+  {
+    "id": "copper",
+    "name": "Copper",
+    "basePrice": 10,
+    "currentPrice": 10,
+    "minPrice": 5,
+    "maxPrice": 50,
+    "minDepth": 0,
+    "tier": 1,
+    "scarcityCap": 10
+  },
+  {
+    "id": "iron",
+    "name": "Iron",
+    "basePrice": 25,
+    "currentPrice": 25,
+    "minPrice": 15,
+    "maxPrice": 100,
+    "minDepth": 15,
+    "tier": 2,
+    "scarcityCap": 5
+  }
+]

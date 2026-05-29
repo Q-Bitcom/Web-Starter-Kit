@@ -1,0 +1,9 @@
+[
+  {
+    "id": "drill_iron",
+    "title": "Iron Drill",
+    "tier": 2,
+    "efficiencyMultiplier": 0.8,
+    "price": 500
+  }
+]

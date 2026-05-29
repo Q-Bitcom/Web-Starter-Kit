@@ -1,0 +1,24 @@
+[
+    {
+        "id": "6a19d253c9ee8",
+        "username": "Player",
+        "password": "$2y$12$Nebv2kzaSvmwm1SmRbk2OuGxNkzbbXzwGR2b5amagOjneEd8ZbfWu",
+        "isAdmin": false,
+        "bankedBalance": 0,
+        "maxDepth": 0,
+        "lifetimeOres": 0,
+        "activeRun": {
+            "y": 0,
+            "fuel": 100,
+            "cargo": {
+                "copper": 0,
+                "iron": 0
+            }
+        },
+        "bankedVault": {
+            "copper": 0,
+            "iron": 0
+        },
+        "equippedDrill": "Basic Drill"
+    }
+]
