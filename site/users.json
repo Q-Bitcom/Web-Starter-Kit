@@ -5,20 +5,53 @@
         "password": "$2y$12$Nebv2kzaSvmwm1SmRbk2OuGxNkzbbXzwGR2b5amagOjneEd8ZbfWu",
         "isAdmin": false,
         "bankedBalance": 0,
-        "maxDepth": 0,
-        "lifetimeOres": 0,
+        "maxDepth": 66,
+        "lifetimeOres": 60,
         "activeRun": {
             "y": 0,
             "fuel": 100,
             "cargo": {
                 "copper": 0,
-                "iron": 0
+                "iron": 0,
+                "gold": 0,
+                "titanium": 0,
+                "uranium": 0
+            },
+            "x": 0,
+            "map": {
+                "-3,1": "dirt",
+                "-2,1": "dirt",
+                "-1,1": "dirt",
+                "0,1": "dirt",
+                "1,1": "copper",
+                "2,1": "dirt",
+                "3,1": "dirt",
+                "-3,2": "dirt",
+                "-2,2": "dirt",
+                "-1,2": "bedrock",
+                "0,2": "dirt",
+                "1,2": "dirt",
+                "2,2": "copper",
+                "3,2": "copper",
+                "-3,3": "copper",
+                "-2,3": "dirt",
+                "-1,3": "dirt",
+                "0,3": "dirt",
+                "1,3": "dirt",
+                "2,3": "copper",
+                "3,3": "dirt"
             }
         },
         "bankedVault": {
-            "copper": 0,
-            "iron": 0
+            "copper": 45,
+            "iron": 7,
+            "gold": 0,
+            "titanium": 0,
+            "uranium": 0
         },
-        "equippedDrill": "Basic Drill"
+        "equippedDrill": "Basic Drill",
+        "gear": {
+            "drill": 1
+        }
     }
 ]
