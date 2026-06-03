@@ -57,8 +57,8 @@
         },
         "credits": 27,
         "marketSaturation": {
-            "copper": 97,
-            "iron": 7,
+            "copper": 12,
+            "iron": 0,
             "gold": 0,
             "titanium": 0,
             "uranium": 0
@@ -67,6 +67,10 @@
             "drill": 2,
             "cargo": 2,
             "fuel": 2
+        },
+        "stats": {
+            "maxDepth": 66,
+            "totalMined": 183
         }
     },
     {

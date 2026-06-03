@@ -23,7 +23,17 @@ if ($userIndex === null) {
 }
 
 $currentUser = &$usersData[$userIndex];
-$maxDepthLimit = isset($settings['maxDepth']) ? $settings['maxDepth'] : 1000; // Increased to allow deep mining
+
+// --- LEADERBOARD INTERACTION SYSTEM ---
+// Securely ensure the structural stats object exists without erasing previous saves
+if (!isset($currentUser['stats'])) {
+    $currentUser['stats'] = [
+        'maxDepth' => isset($currentUser['maxDepth']) ? $currentUser['maxDepth'] : 0,
+        'totalMined' => isset($currentUser['lifetimeOres']) ? $currentUser['lifetimeOres'] : 0
+    ];
+}
+
+$maxDepthLimit = isset($settings['maxDepth']) ? $settings['maxDepth'] : 1000; 
 $fuelCost = isset($settings['fuelCostPerClick']) ? $settings['fuelCostPerClick'] : 1;
 $maxCargo = isset($currentUser['gear']['maxCargo']) ? $currentUser['gear']['maxCargo'] : 15;
 $maxFuel = isset($currentUser['gear']['maxFuel']) ? $currentUser['gear']['maxFuel'] : 100; 
@@ -87,11 +97,11 @@ function getBlock(&$map, $x, $y, $maxDepth) {
         }
         // ZONE 4: Deep Core (100m+)
         else {
-            if ($rand <= 1) $type = 'copper'; // Nearly gone
-            elseif ($rand <= 3) $type = 'iron'; // Rare
-            elseif ($rand <= 12) $type = 'gold'; // Common
-            elseif ($rand <= 22) $type = 'titanium'; // NEW: Titanium appears
-            elseif ($rand <= 25 && $y >= 150) $type = 'uranium'; // NEW: Uranium appears below 150m
+            if ($rand <= 1) $type = 'copper'; 
+            elseif ($rand <= 3) $type = 'iron'; 
+            elseif ($rand <= 12) $type = 'gold'; 
+            elseif ($rand <= 22) $type = 'titanium'; 
+            elseif ($rand <= 25 && $y >= 150) $type = 'uranium'; 
             else $type = 'dirt';
         }
     }
@@ -163,14 +173,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $currentUser['activeRun']['x'] = $targetX;
                 $currentUser['activeRun']['y'] = $targetY;
 
+                // Live dynamic leaderboard depth sync tracking
                 if ($targetY > $currentUser['maxDepth']) $currentUser['maxDepth'] = $targetY;
+                if ($targetY > $currentUser['stats']['maxDepth']) $currentUser['stats']['maxDepth'] = $targetY;
 
                 if (in_array($targetBlock, array_merge(['dirt'], $oresList))) {
                     $currentUser['activeRun']['map']["$targetX,$targetY"] = 'empty';
 
                     if (in_array($targetBlock, $oresList)) {
                         $currentUser['activeRun']['cargo'][$targetBlock] += 1;
+                        if (!isset($currentUser['lifetimeOres'])) $currentUser['lifetimeOres'] = 0;
+
                         $currentUser['lifetimeOres'] += 1;
+                        $currentUser['stats']['totalMined'] += 1; // Dynamic leaderboard ore counter sync
+
                         $currentCargo += 1;
                         $message = "MINED: Extracted 1 " . ucfirst($targetBlock) . "!";
                     } else {
@@ -383,6 +399,5 @@ file_put_contents('users.json', json_encode($usersData, JSON_PRETTY_PRINT));
         </form>
     <?php endif; ?>
 
-    
 </body>
 </html>
