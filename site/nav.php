@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="profile.php">Profile</a></li>
             <li><a href="game.php">Mining Sector</a></li>
             <li><a href="market.php">AI Market</a></li>
-            <li><a href="workshop.php">Workshop</a></li>
+            <li><a href="shop.php">Workshop</a></li>
             <li><a href="checkpoints.php">Progression</a></li>
             <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true): ?>
                 <li><a href="admin.php" class="admin-link">Admin Panel</a></li>

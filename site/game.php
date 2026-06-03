@@ -25,7 +25,8 @@ if ($userIndex === null) {
 $currentUser = &$usersData[$userIndex];
 $maxDepthLimit = isset($settings['maxDepth']) ? $settings['maxDepth'] : 1000; // Increased to allow deep mining
 $fuelCost = isset($settings['fuelCostPerClick']) ? $settings['fuelCostPerClick'] : 1;
-$maxCargo = isset($settings['maxCargo']) ? $settings['maxCargo'] : 15; 
+$maxCargo = isset($currentUser['gear']['maxCargo']) ? $currentUser['gear']['maxCargo'] : 15;
+$maxFuel = isset($currentUser['gear']['maxFuel']) ? $currentUser['gear']['maxFuel'] : 100; 
 $message = "";
 
 // Ensure new progression structures & new ores exist safely
@@ -110,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $currentUser['bankedVault'][$ore] += $currentUser['activeRun']['cargo'][$ore];
                 $currentUser['activeRun']['cargo'][$ore] = 0;
             }
-            $currentUser['activeRun']['fuel'] = 100; 
+            $currentUser['activeRun']['fuel'] = $maxFuel; 
             $currentUser['activeRun']['map'] = [];
             $currentUser['activeRun']['x'] = 0; 
             $currentCargo = 0;
@@ -128,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         $currentUser['activeRun']['y'] = 0;
         $currentUser['activeRun']['x'] = 0;
-        $currentUser['activeRun']['fuel'] = 100;
+        $currentUser['activeRun']['fuel'] = $maxFuel;
         $currentCargo = array_sum($currentUser['activeRun']['cargo']);
 
         $taxString = empty($taxLog) ? "nothing" : implode(", ", $taxLog);
